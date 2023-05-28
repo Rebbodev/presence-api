@@ -1,4 +1,5 @@
 import { globalVariables } from '..';
+import { io } from '../app/app';
 import { activityTypes, apiData } from '../app/appData';
 import { djsClient } from '../clients/djsClient';
 
@@ -26,5 +27,7 @@ export const PresenceUpdateEvent = djsClient.on(
                 newPresence.clientStatus?.web ||
                 'offline';
         }
+
+        io.emit('presence', apiData);
     }
 );
